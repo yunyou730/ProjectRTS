@@ -10,13 +10,12 @@ namespace rts.mgr
     {
         private Transform _menuRoot = null;
         private Dictionary<string, GameObject> _openMenuDict = new Dictionary<string, GameObject>();
-
-
+        
         private Dictionary<string, string> _menuKeyResDict = new Dictionary<string, string>
         {
             {"MenuMapSetting","Prefabs/Menu/Menu_MapSetting.prefab"},
         };
-
+        
         public MenuManager(Transform menuRoot)
         {
             _menuRoot = menuRoot;

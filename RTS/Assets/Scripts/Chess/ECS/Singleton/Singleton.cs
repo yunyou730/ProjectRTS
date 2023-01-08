@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NotImplementedException = System.NotImplementedException;
 
 namespace rts.chess
 {
-    public abstract class System
+    public class Singleton
     {
-        protected World _world { get; }= null;
+        World _world = null;
         
-        public System(World world)
+        public Singleton(World world)
         {
             _world = world;
         }
-        
-        public abstract void Tick();
     }
-    
 }

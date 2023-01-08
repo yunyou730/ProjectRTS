@@ -6,7 +6,7 @@ namespace rts.chess
 {
     public class ChessInfo
     {
-        readonly int _tileSize;
+        public readonly int _tileSize;
         public readonly int _mapWidth;
         public readonly int _mapHeight;
         
