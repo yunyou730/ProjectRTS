@@ -43,23 +43,23 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\menu\MenuPrepareEnter.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\System\System.cs" />
+     <Compile Include="Assets\Scripts\Chess\Actors\AChessboard.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Command\CreateChessboardCommand.cs" />
      <Compile Include="Assets\Scripts\Chess\Chess.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Command\Command.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\World.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\System\GfxCreationSystem.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Singleton\Singleton.cs" />
      <Compile Include="Assets\Scripts\Chess\ChessInfo.cs" />
      <Compile Include="Assets\Scripts\managers\MenuManager.cs" />
      <Compile Include="Assets\Scripts\managers\LogManager.cs" />
      <Compile Include="Assets\Scripts\Entry.cs" />
      <Compile Include="Assets\Scripts\Utils\ILog.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Component\Component.cs" />
      <Compile Include="Assets\Scripts\managers\AssetManager.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
-     <Compile Include="Assets\Scripts\Chess\ECS\Entity.cs" />
-     <Compile Include="Assets\Scripts\Chess\ECS\Component\Component.cs" />
-     <Compile Include="Assets\Scripts\Chess\ECS\Singleton\Singleton.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Singleton\SetupSingleton.cs" />
-     <Compile Include="Assets\Scripts\Chess\ECS\Command\Command.cs" />
-     <Compile Include="Assets\Scripts\Chess\ECS\Command\CreateChessboardCommand.cs" />
-     <Compile Include="Assets\Scripts\Chess\Actors\AChessboard.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Entity.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -731,8 +731,14 @@
      <Reference Include="Unity.VisualScripting.State.Editor">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Searcher.Editor">
+     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.Runtime">
+     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
@@ -743,11 +749,14 @@
      <Reference Include="UnityEditor.UI">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.PlasticSCM.Editor">
+     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Rider.Editor">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
@@ -761,6 +770,9 @@
      <Reference Include="Unity.EditorCoroutines.Editor">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.ShaderGraph.Editor">
+     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Services.Core.Analytics">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
      </Reference>
@@ -770,32 +782,20 @@
      <Reference Include="Unity.Services.Core.Environments">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.Services.Core.Environments.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TestTools.CodeCoverage.Editor">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualScripting.State">
-     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Searcher.Editor">
-     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.RenderPipelines.Core.Editor">
      <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ShaderGraph.Editor">
-     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+     <Reference Include="Unity.VisualScripting.State">
+     <HintPath>D:\code\ProjectRTS\RTS\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -11,19 +11,25 @@ namespace rts.menu
     public class MenuPrepareEnter : MonoBehaviour
     {
         private Button _btnEnterGame = null;
+        private TMP_Text _txtEnter = null;
         private TMP_InputField _txtMapWidth = null;
         private TMP_InputField _txtMapHeight = null;
-        
-        void Start()
+
+        private void Awake()
         {
             _btnEnterGame = transform.Find("Button_EnterGame").GetComponent<Button>();
+            _txtEnter = _btnEnterGame.transform.Find("Text (TMP)").GetComponent<TMP_Text>();
             _txtMapWidth = transform.Find("Input_MapWidth").GetComponent<TMP_InputField>();
             _txtMapHeight = transform.Find("Input_MapHeight").GetComponent<TMP_InputField>();
-            
+        }
+
+        void Start()
+        {
             _txtMapWidth.text = "50";
             _txtMapHeight.text = "60";
 
             _btnEnterGame.onClick.AddListener(this.OnClickEnter);
+            _txtEnter.text = "Create Game";
         }
 
         private void OnClickEnter()
@@ -34,13 +40,8 @@ namespace rts.menu
             int mapHeight = 60;
             if (Int32.TryParse(_txtMapWidth.text, out mapWidth) && Int32.TryParse(_txtMapHeight.text,out mapHeight))
             {
-                
             }
-            else
-            {
-                    
-            }
-            
+        
             ChessInfo ci = new ChessInfo(1,mapWidth,mapHeight);
             Entry.Instance.Game.StartChess(ci);
         }

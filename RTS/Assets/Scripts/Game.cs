@@ -9,8 +9,7 @@ namespace rts
 {
     public class Game : IDisposable
     {
-        private World _world = null;
-        private float _elapsedTime = 0;
+        private Chess _chess = null;
         
         public Game()
         {
@@ -24,36 +23,23 @@ namespace rts
         
         public void Dispose()
         {
-            ExitChess();
+            _chess.Exit();
         }
         
         public void StartChess(ChessInfo chessInfo)
         {
-            _world = new World(Entry.Instance.LogManager);
-            _world.Initialize(chessInfo);
+            _chess = new Chess();
+            _chess.Start(chessInfo);
         }
         
         public void ExitChess()
         {
-            _world?.Dispose();
+            _chess.Exit();   
         }
 
         public void OnUpdate(float deltaTime)
         {
-            if (_world != null)
-            {
-                // Handle tick
-                _elapsedTime += deltaTime;
-                int times = (int)(_elapsedTime / _world.LogicTimeSpan);
-                for (int i = 0;i < times;i++)
-                {
-                    _world.TickLogic();
-                }
-                _elapsedTime -= times * _world.LogicTimeSpan;
-            
-                // Handle update
-                _world.TickRender();
-            }
+            _chess?.OnUpdate(deltaTime);
         }
     }
     

@@ -14,23 +14,25 @@ namespace rts.chess.actor
         [SerializeField] protected Color _evenColor = Color.black;
 
         private Material _material = null;
-        
-        void Start()
+
+        private void Awake()
+        {
+            _material = GetComponent<MeshRenderer>().sharedMaterial;
+        }
+
+        public void SetSize(int rowCnt,int colCnt)
+        {
+            _rows = rowCnt;
+            _cols = colCnt;
+        }
+
+        public void Refresh()
         {
             transform.localScale = new Vector3(_cols, _rows, 1);
-            _material = GetComponent<MeshRenderer>().sharedMaterial;
-            
             _material.SetFloat("_Width",_cols);
             _material.SetFloat("_Height",_rows);
             _material.SetColor("_OddColor",_oddColor);
             _material.SetColor("_EvenColor",_evenColor);
-        }
-
-        private void Update()
-        {
-            transform.localScale = new Vector3(_cols, _rows, 1);
-            _material.SetFloat("_Width",_cols);
-            _material.SetFloat("_Height",_rows);
         }
     }
 }
