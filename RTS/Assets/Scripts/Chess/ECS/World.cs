@@ -46,14 +46,21 @@ namespace rts.chess
         
         protected void RegisterSingletons()
         {
+            // setup 
             var setup = new SetupSingleton(this);
             setup.FillMapBaseInfo(_chessInfo._tileSize,_chessInfo._mapWidth,_chessInfo._mapHeight);
             _singletonDict.Add(nameof(SetupSingleton),setup);
+            
+            // tilemap 
+            var tilemap = new TileMapSingleton(this);
+            tilemap.Init(_chessInfo._mapHeight,_chessInfo._mapWidth);
+            _singletonDict.Add(nameof(TileMapSingleton),tilemap);
         }
         
         protected void RegisterSystems()
         {
             _gfxSystems.Add(new GfxCreationSystem(this));
+            _gfxSystems.Add(new GfxCameraSystem(this));
         }
 
         public T GetSingleton<T>(string singletonKey) where T : Singleton

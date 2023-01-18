@@ -54,12 +54,15 @@
      <Compile Include="Assets\Scripts\managers\MenuManager.cs" />
      <Compile Include="Assets\Scripts\managers\LogManager.cs" />
      <Compile Include="Assets\Scripts\Entry.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\System\GfxCameraSystem.cs" />
      <Compile Include="Assets\Scripts\Utils\ILog.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Component\Component.cs" />
      <Compile Include="Assets\Scripts\managers\AssetManager.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Utils\Measure.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Singleton\SetupSingleton.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Entity.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Singleton\TileMapSingleton.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

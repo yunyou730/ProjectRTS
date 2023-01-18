@@ -14,7 +14,7 @@ namespace rts.chess.actor
         [SerializeField] protected Color _evenColor = Color.black;
 
         private Material _material = null;
-
+        
         private void Awake()
         {
             _material = GetComponent<MeshRenderer>().sharedMaterial;
@@ -25,7 +25,7 @@ namespace rts.chess.actor
             _rows = rowCnt;
             _cols = colCnt;
         }
-
+        
         public void Refresh()
         {
             transform.localScale = new Vector3(_cols, _rows, 1);

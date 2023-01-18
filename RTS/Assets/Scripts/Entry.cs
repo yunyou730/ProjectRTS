@@ -24,7 +24,7 @@ namespace rts
         private void Awake()
         {
             Instance = this;
-            _rootGO = transform.Find("[entry]");
+            _rootGO = transform;
             _menuRoot = transform.Find("[menu_root]");
 
             LogManager = new LogManager();
