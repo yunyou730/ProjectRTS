@@ -33,7 +33,7 @@ namespace rts.chess
             }
             _setupSingleton.HasCreatedChessboard = true;
             
-            // Do create actor
+            // create chessboard actor
             var prefab = Entry.Instance.AssetManager.LoadPrefab("Prefabs/Actors/Chessboard");
             var go = GameObject.Instantiate(prefab);
             go.transform.SetParent(_root);
@@ -52,22 +52,13 @@ namespace rts.chess
                 return;
             }
             _tileMapSingleton.HasCreatedTileMap = true;
-
-            var prefab = Entry.Instance.AssetManager.LoadPrefab("Prefabs/Voxels/Voxel.01");
-            for (int row = 0; row < _tileMapSingleton.GetRowCnt();row++)
-            {
-                for (int col = 0; col < _tileMapSingleton.GetColCnt();col++)
-                {
-                    Vector3 worldPos = Measure.GetWorldPosAtCoord(row, col);
-                    var voxel = GameObject.Instantiate(prefab);
-                    voxel.transform.SetParent(_root);
-                    voxel.transform.localPosition = worldPos - new Vector3(0.0f,-0.5f,0.0f);
-
-
-                    _tileMapSingleton.GetType()
-
-                }
-            }
+            
+            // Create tilemap actor
+            GameObject tilemapActor = new GameObject();
+            tilemapActor.name = "[tilemap]";
+            tilemapActor.transform.SetParent(_root);
+            ATileMap aTilemap = tilemapActor.AddComponent<ATileMap>();
+            aTilemap.Initialize(_tileMapSingleton,_root);
         }
     }
 }

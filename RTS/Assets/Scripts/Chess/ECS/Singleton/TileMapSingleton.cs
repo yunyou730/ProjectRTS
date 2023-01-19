@@ -17,13 +17,23 @@ namespace rts.chess
         
         public class Tile
         {
-            public int _height;
-            public GroundType _grdType;
+            protected int _height;
+            protected GroundType _grdType;
 
             public Tile(int height, GroundType gtype)
             {
                 _height = height;
                 _grdType = gtype;
+            }
+            
+            public int GetHeight()
+            {
+                return _height;
+            }
+
+            public GroundType GetGroundType()
+            {
+                return _grdType;
             }
         }
         

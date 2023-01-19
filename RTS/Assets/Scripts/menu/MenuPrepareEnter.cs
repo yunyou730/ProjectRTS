@@ -25,8 +25,8 @@ namespace rts.menu
 
         void Start()
         {
-            _txtMapWidth.text = "50";
-            _txtMapHeight.text = "60";
+            _txtMapWidth.text = "7";
+            _txtMapHeight.text = "6";
 
             _btnEnterGame.onClick.AddListener(this.OnClickEnter);
             _txtEnter.text = "Create Game";

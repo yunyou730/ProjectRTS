@@ -21,9 +21,15 @@ namespace rts.chess
             return new Vector3(x,y,z);
         }
 
+        public static float TileHeightToWorldY(int tileHeight)
+        {
+            return tileHeight * _heightStep + _baseHeight;
+        }
+
         public static Vector3 GetWorldPosAtCoordAndHeight(int row,int col,int height)
         {
-            Vector3 pos = Vector3.zero;
+            Vector3 pos = GetWorldPosAtCoord(row,col);
+            pos.y = TileHeightToWorldY(height);
             return pos;
         }
 

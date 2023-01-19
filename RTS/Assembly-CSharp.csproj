@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\Chess\Chess.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Command\Command.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\World.cs" />
+     <Compile Include="Assets\Scripts\Chess\ECS\Singleton\TileMapSingleton.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\System\GfxCreationSystem.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Singleton\Singleton.cs" />
      <Compile Include="Assets\Scripts\Chess\ChessInfo.cs" />
@@ -62,7 +63,7 @@
      <Compile Include="Assets\Scripts\Chess\ECS\Utils\Measure.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Singleton\SetupSingleton.cs" />
      <Compile Include="Assets\Scripts\Chess\ECS\Entity.cs" />
-     <Compile Include="Assets\Scripts\Chess\ECS\Singleton\TileMapSingleton.cs" />
+     <Compile Include="Assets\Scripts\Chess\Actors\ATileMap.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
