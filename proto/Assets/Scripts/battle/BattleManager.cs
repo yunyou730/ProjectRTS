@@ -13,9 +13,11 @@ namespace ayy
         public void StartMockBattle()
         {
             MapData mapData = MockMapData();
+            GameObject cameraGO = GameObject.Find("Main Camera");
+            Debug.Assert(cameraGO != null,"Can't find [Main Camera]");
             
             _battle = new Battle();
-            _battle.Start(mapData);
+            _battle.Start(mapData,cameraGO);
         }
         
         protected MapData MockMapData()

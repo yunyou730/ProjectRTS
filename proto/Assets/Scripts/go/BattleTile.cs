@@ -18,8 +18,7 @@ namespace ayy.go
             _row = row;
             _col = col;
             _tileType = tileType;
-            
-            _material = GetComponent<MeshRenderer>().material = new Material(Shader.Find("ayy/BattleTile"));
+
 
             RefreshPosition();
             RefreshColor();
@@ -27,23 +26,30 @@ namespace ayy.go
         
         protected void RefreshPosition()
         {
-            transform.localPosition = new Vector3(_col,0,_row);
+            transform.localPosition = BattleMetric.GetTilePosition(_row,_col); 
         }
 
         protected void RefreshColor()
         {
+            string materialKey = "battle_tile";
+            
             Color col = Color.white;
             switch (_tileType)
             {
                 case ETileType.Empty:
                     col = Color.green;
+                    materialKey = "battle_tile_empty";
                     break;
                 case ETileType.Obstacle:
                     col = Color.red;
+                    materialKey = "battle_tile_occupied";
                     break;
                 default:
                     break;
             }
+            
+            _material = GetComponent<MeshRenderer>().sharedMaterial =
+                Game.Instance.GetResourceManager().GetMaterial(materialKey, "ayy/BattleTile");
             _material.SetColor(Shader.PropertyToID("_Color"), col);
         }
     }

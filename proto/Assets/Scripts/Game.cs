@@ -8,9 +8,21 @@ namespace  ayy
 {
     public class Game : MonoBehaviour
     {
+        
+        public static Game Instance = null;
+
+        private ResourceManager _resouceManager = null;
         private BattleManager _battleManager = null;
+        
+        void Awake()
+        {
+            Instance = this;
+        }
+        
         void Start()
         {
+            _resouceManager = new ResourceManager();
+            
             _battleManager = new BattleManager();
             _battleManager.StartMockBattle();
         }
@@ -26,6 +38,11 @@ namespace  ayy
         private void OnDestroy()
         {
             
+        }
+
+        public ResourceManager GetResourceManager()
+        {
+            return _resouceManager;
         }
     }
 
