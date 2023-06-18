@@ -8,8 +8,7 @@ namespace ayy.go
     public class BattleMap : MonoBehaviour
     {
         private ayy.MapData _mapData = null;
-        private GameObject _rootGO = null;
-        
+
         public void SetMapData(MapData mapData)
         {
             _mapData = mapData;
@@ -17,7 +16,6 @@ namespace ayy.go
         
         void Start()
         {
-            _rootGO = new GameObject("[ayy]MapRoot");
             CreateTiles();
         }
         
@@ -28,7 +26,7 @@ namespace ayy.go
                 for (int col = 0;col < _mapData.GetColCnt();col++)
                 {
                     GameObject tilePrefab = Resources.Load<GameObject>("BattleTile");
-                    GameObject tileGO = GameObject.Instantiate(tilePrefab, _rootGO.transform, true);
+                    GameObject tileGO = GameObject.Instantiate(tilePrefab, gameObject.transform, true);
                     
                     BattleTile battleTile = tileGO.AddComponent<BattleTile>();
                     ETileType tileType = _mapData.GetTileTypeAt(row, col);

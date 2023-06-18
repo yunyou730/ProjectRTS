@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets/Scripts/go/BattleMap.cs" />
+     <Compile Include="Assets/Scripts/go/PathLine.cs" />
      <Compile Include="Assets/Scripts/Game.cs" />
      <Compile Include="Assets/Scripts/go/BattleTile.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/Data/PathFinderData.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets/Scripts/battle/gameplay/System/MapVFXSystem.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Resources" />
+     <None Include="Assets/Materials/PathLine.shader" />
      <Folder Include="Assets/Scripts" />
      <Folder Include="Assets/Scripts/battle/gameplay" />
      <Folder Include="Assets/Scripts/ui" />

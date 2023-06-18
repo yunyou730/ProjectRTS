@@ -9,10 +9,14 @@ namespace ayy
         public MapData mapData = null;
         public PathFinderData pathFinderData = null;
 
+        public GameObject rootGO = null;
+        
         private List<BaseSystem> _systems = new List<BaseSystem>();
         
         public void Start(MapData mapData,GameObject cameraGO)
         {
+            rootGO = new GameObject("[ayy]battle_root");
+            
             this.mapData = mapData;
             this.pathFinderData = new PathFinderData();
             

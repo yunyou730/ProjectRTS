@@ -18,15 +18,15 @@ namespace ayy
 
     public enum EPathResult
     {
-        Success,
         Fail,
+        Success,
         Max
     }
 
     public class PathResult
     {
         public EPathResult flag;
-        public List<Vector2> points;
+        public List<Vector2> points = null;
     }
 }
 

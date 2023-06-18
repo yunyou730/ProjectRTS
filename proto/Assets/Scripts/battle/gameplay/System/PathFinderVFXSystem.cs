@@ -12,19 +12,15 @@ namespace ayy
         
         private GameObject _sourceGO = null;
         private GameObject _destGO = null;
+        private GameObject _pathLineGO = null;
         
         public PathFinderVFXSystem(Battle battle,GameObject cameraGO) : base(battle)
         {
             _pathFinderData = battle.pathFinderData;
             _cameraGO = cameraGO;
             
-            // source & dest 
-            var srcPrefab = Resources.Load<GameObject>("PathFinderSource"); 
-            var destPrefab = Resources.Load<GameObject>("PathFinderDest");
-            _sourceGO = GameObject.Instantiate(srcPrefab);
-            _destGO = GameObject.Instantiate(destPrefab);
-            _sourceGO.SetActive(false);
-            _destGO.SetActive(false);
+            CreateSourceAndDestPoint();
+            CreatePathLine();
         }
         
         public override void OnStart()
@@ -36,8 +32,8 @@ namespace ayy
         {
             if (HandleSetPoint())
             {
-                RefreshSourcePoint();
-                RefreshDestPoint();
+                RefreshPoint(CheckAndGetLastJob().from, _sourceGO);
+                RefreshPoint(CheckAndGetLastJob().to, _destGO);
                 RefreshPathLine();         
             }
         }
@@ -51,6 +47,28 @@ namespace ayy
             
         }
 
+        protected void CreateSourceAndDestPoint()
+        {
+            var srcPrefab = Resources.Load<GameObject>("PathFinderSource"); 
+            var destPrefab = Resources.Load<GameObject>("PathFinderDest");
+            _sourceGO = GameObject.Instantiate(srcPrefab);
+            _destGO = GameObject.Instantiate(destPrefab);
+            _sourceGO.SetActive(false);
+            _destGO.SetActive(false);
+            
+            _sourceGO.transform.SetParent(_battle.rootGO.transform);
+            _destGO.transform.SetParent(_battle.rootGO.transform);
+        }
+        
+        protected void CreatePathLine()
+        {
+            GameObject pathLinePrefab = Resources.Load<GameObject>("PathLine");
+            _pathLineGO = Object.Instantiate(pathLinePrefab);
+            _pathLineGO.AddComponent<PathLine>();
+            _pathLineGO.transform.SetParent(_battle.rootGO.transform);
+            _pathLineGO.SetActive(false);
+        }
+
         protected bool HandleSetPoint()
         {
             bool bHit = false;
@@ -61,64 +79,67 @@ namespace ayy
                 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    // Debug.Log("Clicked on " + hit.transform.name);
-
                     bHit = true;
-                    if (_pathFinderData.from == null)
+
+                    var job = CheckAndGetLastJob();
+
+                    if (job.from == null)
                     {
                         Vector2 tilePos = BattleMetric.ConvertToTilePos(hit.transform.localPosition);
-                        _pathFinderData.from = tilePos;
+                        job.from = tilePos;
                     }
-                    else if (_pathFinderData.to == null)
+                    else if (job.to == null)
                     {
                         Vector2 tilePos = BattleMetric.ConvertToTilePos(hit.transform.localPosition);
-                        _pathFinderData.to = tilePos;
+                        job.to = tilePos;
                     }
                     else
                     {
-                        _pathFinderData.Clear();
+                        job.Clear();
                     }
                 }
             }
-
             return bHit;
         }
 
-        protected void RefreshSourcePoint()
+        protected void RefreshPoint(Vector2? tilePos,GameObject go)
         {
-            if(_pathFinderData.from != null)
+            if (tilePos != null)
             {
-                Vector2 from = _pathFinderData.from.Value;
-                _sourceGO.SetActive(true);
-                Vector3 pos = BattleMetric.GetTilePosition((int)from.y,(int)from.x);
-                _sourceGO.transform.localPosition = pos;
+                Vector2 tile = tilePos.Value;
+                go.SetActive(true);
+
+                Vector3 pos = BattleMetric.GetTilePosition((int)tile.y,(int)tile.x);
+                go.transform.localPosition = pos;
             }
             else
             {
-                _sourceGO.SetActive(false);
+                go.SetActive(false);
             }
         }
 
-        protected void RefreshDestPoint()
+        protected PathFinderJob CheckAndGetLastJob()
         {
-            if(_pathFinderData.to != null)
+            var job = _pathFinderData.GetLastOneJob();
+            if (job == null)
             {
-                Vector2 to = _pathFinderData.to.Value;
-                _destGO.SetActive(true);
-                Vector3 pos = BattleMetric.GetTilePosition((int)to.y,(int)to.x);
-                _destGO.transform.localPosition = pos;
+                _pathFinderData.CreateJob();
+                job = _pathFinderData.GetLastOneJob();
             }
-            else
-            {
-                _destGO.SetActive(false);
-            }
+
+            return job;
         }
 
         protected void RefreshPathLine()
         {
-            
+            var job = CheckAndGetLastJob();
+            if(job.IsResultReady())
+            {
+                PathResult result = job.GetResult();
+                _pathLineGO.GetComponent<PathLine>().SetTilePosList(result.points);
+            }
         }
-
+        
     }    
 }
 
