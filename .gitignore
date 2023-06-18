@@ -1,5 +1,12 @@
-﻿RTS/Temp
+RTS/Temp
 RTS/obj
 RTS/UserSettings
 RTS/Logs
 RTS/Library
+proto/.plastic
+proto/Logs
+proto/Library
+proto/Temp
+proto/.idea
+proto/UserSettings
+proto/obj
