@@ -6,9 +6,10 @@ namespace ayy
 {
     public enum ETileType
     {
-        Invalid,
         Empty,
         Obstacle,
+        
+        Max,
     }
 }
 

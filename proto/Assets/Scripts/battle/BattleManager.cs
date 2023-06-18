@@ -31,8 +31,8 @@ namespace ayy
             {
                 for (int col = 0;col < cols;col++)
                 {
-                    int n = (int)ETileType.Obstacle;
-                    ETileType tileType = (ETileType)rand.Next(1,n);
+                    ETileType tileType = (ETileType)rand.Next((int)ETileType.Max);
+                    Debug.Log("TileType:" + tileType);
                     mapData.SetTileTypeAt(row,col,tileType);
                 }
             }

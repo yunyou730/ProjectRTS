@@ -26,7 +26,7 @@ namespace ayy
         {
             if (row < 0 || row >= _rowCnt || col < 0 || col >= _colCnt)
             {
-                return ETileType.Invalid;                
+                return ETileType.Max;                
             }
             return _tileData[row, col];
         }
