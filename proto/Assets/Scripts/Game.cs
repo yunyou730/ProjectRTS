@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace  ayy
 {
     public class Game : MonoBehaviour
@@ -37,7 +36,10 @@ namespace  ayy
 
         private void OnDestroy()
         {
-            
+            if (_battleManager != null)
+            {
+                _battleManager.OnDestroy();
+            }
         }
 
         public ResourceManager GetResourceManager()

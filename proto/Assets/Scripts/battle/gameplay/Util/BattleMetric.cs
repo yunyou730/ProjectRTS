@@ -10,10 +10,16 @@ namespace ayy
     {
         public static Vector3 GetTilePosition(int row,int col)
         {
-            Vector3 pos = new Vector3(row, 0, col);
+            Vector3 pos = new Vector3(col, 0, row);
             return pos;
         }
-    
+        
+        public static Vector2 ConvertToTilePos(Vector3 pos)
+        {
+            Vector2 tilePos = new Vector2(pos.x,pos.z);
+            return tilePos;
+        }
+
     }    
 }
 

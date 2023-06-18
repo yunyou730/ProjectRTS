@@ -23,8 +23,8 @@ namespace ayy
         protected MapData MockMapData()
         {
             MapData mapData = new MapData();
-            const int rows = 50;
-            const int cols = 40;
+            const int rows = 100;
+            const int cols = 100;
             mapData.Create(rows,cols);
 
 
@@ -33,8 +33,10 @@ namespace ayy
             {
                 for (int col = 0;col < cols;col++)
                 {
-                    ETileType tileType = (ETileType)rand.Next((int)ETileType.Max);
-                    Debug.Log("TileType:" + tileType);
+                    //ETileType tileType = (ETileType)rand.Next((int)ETileType.Max);
+
+                    double rValue = rand.NextDouble();
+                    ETileType tileType = rValue <= 0.1 ? ETileType.Obstacle : ETileType.Empty;
                     mapData.SetTileTypeAt(row,col,tileType);
                 }
             }

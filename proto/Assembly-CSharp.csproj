@@ -45,14 +45,17 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.3.0f1c1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets/Scripts/battle/BattleMetric.cs" />
      <Compile Include="Assets/Scripts/go/BattleMap.cs" />
      <Compile Include="Assets/Scripts/Game.cs" />
      <Compile Include="Assets/Scripts/go/BattleTile.cs" />
+     <Compile Include="Assets/Scripts/battle/gameplay/Data/PathFinderData.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/System/BaseSystem.cs" />
+     <Compile Include="Assets/Scripts/battle/gameplay/System/PathFinderVFXSystem.cs" />
      <Compile Include="Assets/Scripts/battle/BattleManager.cs" />
      <Compile Include="Assets/Scripts/res/ResourceManager.cs" />
+     <Compile Include="Assets/Scripts/battle/gameplay/Util/BattleMetric.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/System/CameraCtrlSystem.cs" />
+     <Compile Include="Assets/Scripts/battle/gameplay/Util/AStar.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/Battle.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/Data/MapData.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/Data/BattleDataType.cs" />
@@ -63,10 +66,13 @@
      <Folder Include="Assets/Scripts/battle/gameplay" />
      <Folder Include="Assets/Scripts/ui" />
      <Folder Include="Assets/Scripts/battle/gameplay/Data" />
+     <None Include="Assets/Materials/PathFinderSource.shader" />
      <Folder Include="Assets/Scripts/res" />
      <Folder Include="Assets/Scripts/go" />
      <Folder Include="Assets/Scenes" />
      <None Include="Assets/Materials/BattleTile.shader" />
+     <Folder Include="Assets/Scripts/battle/gameplay/Util" />
+     <None Include="Assets/Materials/PathFinderDest.shader" />
      <Folder Include="Assets/Scripts/battle" />
      <Folder Include="Assets/Materials" />
      <Folder Include="Assets/Scripts/battle/gameplay/System" />

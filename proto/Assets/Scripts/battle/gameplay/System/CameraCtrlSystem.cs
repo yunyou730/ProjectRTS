@@ -28,7 +28,7 @@ namespace ayy
         {
             if (!HandleMoveByKeyBoard())
             {
-                HandleCameraMoveByMouse();                
+                HandleMoveByMousePos();                
             }
 
             HandleAdjustOffset();
@@ -52,7 +52,7 @@ namespace ayy
             cameraTrans.LookAt(tilePos);
         }
 
-        protected bool HandleCameraMoveByMouse()
+        protected bool HandleMoveByMousePos()
         {
             Vector2 mousePos = Input.mousePosition;
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
