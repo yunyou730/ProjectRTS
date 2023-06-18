@@ -14,6 +14,11 @@ namespace ayy
             
             return result;
         }
+
+        void DoCalc(Vector2 from,Vector2 to)
+        {
+            
+        }
     }
 
     public enum EPathResult

@@ -52,6 +52,7 @@
      <Compile Include="Assets/Scripts/battle/gameplay/Data/PathFinderData.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/System/BaseSystem.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/System/PathFinderVFXSystem.cs" />
+     <Compile Include="Assets/Scripts/battle/gameplay/System/PathFindJobSystem.cs" />
      <Compile Include="Assets/Scripts/battle/BattleManager.cs" />
      <Compile Include="Assets/Scripts/res/ResourceManager.cs" />
      <Compile Include="Assets/Scripts/battle/gameplay/Util/BattleMetric.cs" />

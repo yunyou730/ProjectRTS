@@ -30,6 +30,7 @@ namespace ayy
         public Vector2? from = null;
         public Vector2? to = null;
         public PathResult pathResult = null;
+        
         public bool IsReadyToCalc()
         {
             if (from != null && to != null && pathResult == null)
@@ -53,6 +54,11 @@ namespace ayy
         public PathResult GetResult()
         {
             return pathResult;
+        }
+
+        public void SetResult(PathResult result)
+        {
+            pathResult = result;
         }
 
         public void Clear()
