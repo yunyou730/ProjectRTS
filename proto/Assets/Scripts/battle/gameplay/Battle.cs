@@ -23,6 +23,7 @@ namespace ayy
             _systems.Add(new MapVFXSystem(this));
             _systems.Add(new CameraCtrlSystem(this,cameraGO));
             _systems.Add(new PathFinderVFXSystem(this,cameraGO));
+            _systems.Add(new PathFindJobSystem(this));
 
             foreach (var sys in _systems)
             {

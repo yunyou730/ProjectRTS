@@ -34,7 +34,12 @@ namespace ayy
             {
                 RefreshPoint(CheckAndGetLastJob().from, _sourceGO);
                 RefreshPoint(CheckAndGetLastJob().to, _destGO);
-                RefreshPathLine();         
+            }
+            
+            var job = CheckAndGetLastJob();
+            if (job != null)
+            {
+                RefreshPathLine(job);
             }
         }
         
@@ -130,13 +135,13 @@ namespace ayy
             return job;
         }
 
-        protected void RefreshPathLine()
+        protected void RefreshPathLine(PathFinderJob job)
         {
-            var job = CheckAndGetLastJob();
-            if(job.IsResultReady())
+            if(job.IsResultReady() && !job.bHasDisplay)
             {
                 PathResult result = job.GetResult();
                 _pathLineGO.GetComponent<PathLine>().SetTilePosList(result.points);
+                job.bHasDisplay = true;
             }
         }
         

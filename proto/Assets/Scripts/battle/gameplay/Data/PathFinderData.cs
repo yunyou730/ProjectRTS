@@ -30,6 +30,7 @@ namespace ayy
         public Vector2? from = null;
         public Vector2? to = null;
         public PathResult pathResult = null;
+        public bool bHasDisplay = false;
         
         public bool IsReadyToCalc()
         {
@@ -47,7 +48,6 @@ namespace ayy
             {
                 return true;
             }
-
             return false;
         }
 
@@ -65,6 +65,7 @@ namespace ayy
         {
             from = to = null;
             pathResult = null;
+            bHasDisplay = false;
         }
     }
 }

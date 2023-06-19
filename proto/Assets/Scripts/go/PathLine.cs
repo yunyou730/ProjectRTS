@@ -11,7 +11,12 @@ namespace ayy
         private List<Vector2> _tilePos = null;  // col:x, row: y
         private LineRenderer _lineRenderer = null;
 
-        private void Start()
+        private void Awake()
+        {
+            _lineRenderer = GetComponent<LineRenderer>();   
+        }
+
+        void Start()
         {
             _lineRenderer = GetComponent<LineRenderer>();
         }
@@ -21,12 +26,15 @@ namespace ayy
             if (tilePosList == null)
             {
                 Debug.LogWarning("PathLine::SetTilePostList() received empty list");
+                gameObject.SetActive(false);
                 return;
             }
-
+            
+            gameObject.SetActive(true);
             _tilePos = tilePosList;
             
             List<Vector3> points = ConvertTo3DPosList(_tilePos);
+            _lineRenderer.positionCount = points.Count;
             _lineRenderer.SetPositions(points.ToArray());
         }
         
@@ -36,6 +44,7 @@ namespace ayy
             foreach (var tilePos in tilePosList)
             {
                 Vector3 point = BattleMetric.GetTilePosition((int)tilePos.y,(int)tilePos.x);
+                point.y += 0.1f;    // fix z fighting 
                 result.Add(point);
             }
             return result;
