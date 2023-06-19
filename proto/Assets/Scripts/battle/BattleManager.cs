@@ -36,7 +36,7 @@ namespace ayy
                     //ETileType tileType = (ETileType)rand.Next((int)ETileType.Max);
 
                     double rValue = rand.NextDouble();
-                    ETileType tileType = rValue <= 0.1 ? ETileType.Obstacle : ETileType.Empty;
+                    ETileType tileType = rValue <= 0.5 ? ETileType.Obstacle : ETileType.Empty;
                     mapData.SetTileTypeAt(row,col,tileType);
                 }
             }
