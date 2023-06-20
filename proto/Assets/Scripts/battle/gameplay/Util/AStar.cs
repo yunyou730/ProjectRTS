@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 namespace ayy
 {
@@ -12,10 +15,21 @@ namespace ayy
         public static PathResult CalcPath(Vector2 from,Vector2 to,MapData mapData)
         {
             PathResult result = new PathResult();
-            
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
             // do job 
             AStarFinder finder = new AStarFinder(from,to,mapData);
-            finder.DoJob();
+            // for (int i = 0;i < 100;i++)
+            // {
+                // finder.Clear();
+                finder.DoJob();                
+            // }
+
+            
+            stopWatch.Stop();
+            UnityEngine.Debug.Log("AStarJob Cost" + stopWatch.Elapsed);
+            
             
             // hold result
             result.flag = finder.bSucc ? EPathResult.Success : EPathResult.Fail;
@@ -41,6 +55,7 @@ namespace ayy
         public int y = 0;
         public AStarNode parent = null;
         public float gValue = 0.0f;
+        [CanBeNull] private string _key = null;
 
         public AStarNode(int x,int y)
         {
@@ -51,7 +66,11 @@ namespace ayy
         
         public string Key()
         {
-            return GenKey(this.x, this.y);
+            if (_key == null)
+            {
+                _key = GenKey(this.x, this.y);
+            }
+            return _key;
         }
 
         public static string GenKey(int x,int y)
@@ -96,6 +115,13 @@ namespace ayy
             return nodePool[key];
         }
 
+        public void Clear()
+        {
+            openList = new Dictionary<string, AStarNode>();
+            closeList = new Dictionary<string, AStarNode>();
+            bSucc = false;
+        }
+
         public void DoJob()
         {
             var curNode = _from;
@@ -119,7 +145,6 @@ namespace ayy
                     {
                         // find the result ,reverse parent
                         bSucc = true;
-                        // break;
                         return;
                     }
  
@@ -159,24 +184,28 @@ namespace ayy
         {
             List<AStarNode> neighbors = new List<AStarNode>();
             
-            AStarNode[] n = new AStarNode[8];
-            n[0] = GetNode(node.x - 1,node.y - 1);
-            n[1] = GetNode(node.x - 1,node.y);
-            n[2] = GetNode(node.x - 1,node.y + 1);
-            n[3] = GetNode(node.x,node.y - 1);
-            n[4] = GetNode(node.x,node.y + 1);
-            n[5] = GetNode(node.x + 1,node.y - 1);
-            n[6] = GetNode(node.x + 1,node.y);
-            n[7] = GetNode(node.x + 1,node.y + 1);
-
-            for (int i = 0;i < 8;i++)
-            {
-                if (IsTileValid(n[i]))
-                {
-                    neighbors.Add(n[i]);
-                }
-            }
+            // 4 directions
+            CheckAndAddToNeighborList(neighbors,node.x - 1,node.y);
+            CheckAndAddToNeighborList(neighbors,node.x + 1,node.y);
+            CheckAndAddToNeighborList(neighbors,node.x,node.y - 1);
+            CheckAndAddToNeighborList(neighbors,node.x,node.y + 1);
+                
+            // 8 directions to be add
+            CheckAndAddToNeighborList(neighbors,node.x - 1,node.y - 1);
+            CheckAndAddToNeighborList(neighbors,node.x - 1,node.y + 1);
+            CheckAndAddToNeighborList(neighbors,node.x + 1,node.y - 1);
+            CheckAndAddToNeighborList(neighbors,node.x + 1,node.y + 1);            
+            
             return neighbors;
+        }
+
+        protected void CheckAndAddToNeighborList(List<AStarNode> neighbors,int x,int y)
+        {
+            AStarNode node = GetNode(x, y);
+            if (IsTileValid(node))
+            {
+                neighbors.Add(node);
+            }
         }
 
         protected bool IsTileValid(AStarNode node)

@@ -11,8 +11,11 @@ namespace ayy
         private GameObject _cameraGO = null;
         private int _lookingRow = 0;
         private int _looingCol = 0;
-        private float _moveSpeed = 20.0f;
+        private float _moveSpeed = 40.0f;
         private float _adjustOffsetSpeed = 20.0f;
+
+        private Vector3? _mouseHoldScrollButtonPos = null;
+        private float _scrollMoveSpeedFactor = 3.0f;
 
         public CameraCtrlSystem(Battle battle, GameObject cameraGO) : base(battle)
         {
@@ -26,12 +29,11 @@ namespace ayy
 
         public override void OnUpdate()
         {
-            if (!HandleMoveByKeyBoard())
+            if (!HandleMoveByKeyBoard() && !HandleMoveByHoldMouseScroll())
             {
-                HandleMoveByMousePos();                
+                HandleMoveByMousePos();
+                HandleAdjustOffset();
             }
-
-            HandleAdjustOffset();
         }
 
         public override void OnLogicTick()
@@ -105,12 +107,33 @@ namespace ayy
             }
             return MoveByDir(moveDir);
         }
-        
-        protected bool MoveByDir(Vector2 moveDir)
+
+        protected bool HandleMoveByHoldMouseScroll()
+        {
+            if (Input.GetMouseButtonDown(2))
+            {
+                _mouseHoldScrollButtonPos = Input.mousePosition;
+            }
+            else if (Input.GetMouseButtonUp(2))
+            {
+                _mouseHoldScrollButtonPos = null;
+            }
+            else if (_mouseHoldScrollButtonPos != null)
+            {
+                Vector2 mousePosDiff = (Vector2)(_mouseHoldScrollButtonPos.Value - Input.mousePosition);
+                MoveByDir(mousePosDiff,_scrollMoveSpeedFactor);
+
+                _mouseHoldScrollButtonPos = Input.mousePosition;
+                return true;
+            }
+            return false;
+        }
+
+        protected bool MoveByDir(Vector2 moveDir,float speedFactor = 1.0f)
         {
             if(moveDir.magnitude > float.Epsilon)
             {
-                moveDir = moveDir.normalized * (Time.deltaTime * _moveSpeed);
+                moveDir = moveDir.normalized * Time.deltaTime * _moveSpeed * speedFactor;
                 _cameraGO.transform.localPosition += new Vector3(moveDir.x,0,moveDir.y);
                 return true;
             }
