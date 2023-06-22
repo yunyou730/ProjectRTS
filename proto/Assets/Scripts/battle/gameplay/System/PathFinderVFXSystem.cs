@@ -90,12 +90,12 @@ namespace ayy
 
                     if (job.from == null)
                     {
-                        Vector2 tilePos = BattleMetric.ConvertToTilePos(hit.transform.localPosition);
+                        Vector2 tilePos = _battle.metric.ConvertToTilePos(hit.point);
                         job.from = tilePos;
                     }
                     else if (job.to == null)
                     {
-                        Vector2 tilePos = BattleMetric.ConvertToTilePos(hit.transform.localPosition);
+                        Vector2 tilePos = _battle.metric.ConvertToTilePos(hit.point);
                         job.to = tilePos;
                     }
                     else
@@ -114,7 +114,7 @@ namespace ayy
                 Vector2 tile = tilePos.Value;
                 go.SetActive(true);
 
-                Vector3 pos = BattleMetric.GetTilePosition((int)tile.y,(int)tile.x);
+                Vector3 pos = _battle.metric.GetTilePosition((int)tile.y,(int)tile.x);
                 go.transform.localPosition = pos;
             }
             else
@@ -140,7 +140,7 @@ namespace ayy
             if(job.IsResultReady() && !job.bHasDisplay)
             {
                 PathResult result = job.GetResult();
-                _pathLineGO.GetComponent<PathLine>().SetTilePosList(result.points);
+                _pathLineGO.GetComponent<PathLine>().SetTilePosList(_battle,result.points);
                 job.bHasDisplay = true;
             }
         }

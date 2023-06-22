@@ -48,7 +48,7 @@ namespace ayy
         protected void CameraFollowLookingTile()
         {
             Transform cameraTrans = _cameraGO.transform;
-            Vector3 tilePos = BattleMetric.GetTilePosition(_lookingRow, _looingCol);
+            Vector3 tilePos = _battle.metric.GetTilePosition(_lookingRow, _looingCol);
             Vector3 camPos = tilePos + _offset;
             cameraTrans.localPosition = camPos;
             cameraTrans.LookAt(tilePos);

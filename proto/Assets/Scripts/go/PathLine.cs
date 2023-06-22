@@ -21,7 +21,7 @@ namespace ayy
             _lineRenderer = GetComponent<LineRenderer>();
         }
 
-        public void SetTilePosList(List<Vector2> tilePosList)
+        public void SetTilePosList(Battle battle,List<Vector2> tilePosList)
         {
             if (tilePosList == null)
             {
@@ -33,17 +33,17 @@ namespace ayy
             gameObject.SetActive(true);
             _tilePos = tilePosList;
             
-            List<Vector3> points = ConvertTo3DPosList(_tilePos);
+            List<Vector3> points = ConvertTo3DPosList(battle,_tilePos);
             _lineRenderer.positionCount = points.Count;
             _lineRenderer.SetPositions(points.ToArray());
         }
         
-        protected List<Vector3> ConvertTo3DPosList(List<Vector2> tilePosList)
+        protected List<Vector3> ConvertTo3DPosList(Battle battle,List<Vector2> tilePosList)
         {
             List<Vector3> result = new List<Vector3>();
             foreach (var tilePos in tilePosList)
             {
-                Vector3 point = BattleMetric.GetTilePosition((int)tilePos.y,(int)tilePos.x);
+                Vector3 point = battle.metric.GetTilePosition((int)tilePos.y,(int)tilePos.x);
                 point.y += 0.1f;    // fix z fighting 
                 result.Add(point);
             }

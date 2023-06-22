@@ -36,7 +36,7 @@ namespace ayy
         {
             _mapGO = new GameObject("[ayy]BattleMap");
             ayy.go.BattleMap battleMap = _mapGO.AddComponent<ayy.go.BattleMap>();
-            battleMap.SetMapData(this._battle.mapData);
+            battleMap.SetMapData(_battle,_battle.mapData);
         }
     }    
 }

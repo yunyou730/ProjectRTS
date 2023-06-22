@@ -74,6 +74,7 @@
      <Folder Include="Assets/Scripts/go" />
      <Folder Include="Assets/Scenes" />
      <None Include="Assets/Materials/BattleTile.shader" />
+     <None Include="Assets/Materials/BattleMap.shader" />
      <Folder Include="Assets/Scripts/battle/gameplay/Util" />
      <None Include="Assets/Materials/PathFinderDest.shader" />
      <Folder Include="Assets/Scripts/battle" />

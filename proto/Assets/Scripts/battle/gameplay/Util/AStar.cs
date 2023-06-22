@@ -56,6 +56,7 @@ namespace ayy
         public AStarNode parent = null;
         public float gValue = 0.0f;
         [CanBeNull] private string _key = null;
+        public bool IsClosed = false;
 
         public AStarNode(int x,int y)
         {
@@ -89,7 +90,7 @@ namespace ayy
     class AStarFinder
     {
         private Dictionary<string, AStarNode> openList = new Dictionary<string, AStarNode>();
-        private Dictionary<string, AStarNode> closeList = new Dictionary<string, AStarNode>();
+        //private Dictionary<string, AStarNode> closeList = new Dictionary<string, AStarNode>();
         private Dictionary<string, AStarNode> nodePool = new Dictionary<string, AStarNode>();
 
         public AStarNode _from = null;
@@ -118,7 +119,8 @@ namespace ayy
         public void Clear()
         {
             openList = new Dictionary<string, AStarNode>();
-            closeList = new Dictionary<string, AStarNode>();
+            //closeList = new Dictionary<string, AStarNode>();
+            nodePool.Clear();
             bSucc = false;
         }
 
@@ -132,7 +134,7 @@ namespace ayy
             {
                 // maintain openList & closeList
                 openList.Remove(curNode.Key());
-                closeList.Add(curNode.Key(), curNode);
+                curNode.IsClosed = true;
 
                 // neighbors to open list
                 List<AStarNode> neighbors = GetNeighbor(curNode);
@@ -215,7 +217,8 @@ namespace ayy
                 return false;
             }
             
-            if (!closeList.ContainsKey(node.Key())
+            //if (!closeList.ContainsKey(node.Key())
+            if(!node.IsClosed 
                 && !openList.ContainsKey(node.Key())
                 && _mapData.GetTileTypeAt((int)node.y, (int)node.x) != ETileType.Obstacle)
             {

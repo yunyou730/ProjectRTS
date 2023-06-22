@@ -12,7 +12,7 @@ namespace ayy.go
         protected ETileType _tileType;
         
         
-        public void Refresh(int row,int col,ETileType tileType)
+        public void Refresh(Battle battle,int row,int col,ETileType tileType)
         {
             gameObject.name = "[ayy][" + row + "," + col + "]";
             _row = row;
@@ -20,13 +20,13 @@ namespace ayy.go
             _tileType = tileType;
 
 
-            RefreshPosition();
+            RefreshPosition(battle);
             RefreshColor();
         }
         
-        protected void RefreshPosition()
+        protected void RefreshPosition(Battle battle)
         {
-            transform.localPosition = BattleMetric.GetTilePosition(_row,_col); 
+            transform.localPosition = battle.metric.GetTilePosition(_row,_col); 
         }
 
         protected void RefreshColor()
